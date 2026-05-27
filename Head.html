@@ -20,38 +20,61 @@
 </nav>
 
 <style>
-    /* โหมดคอมพิวเตอร์ปกติ */
+    /* 🖥️ โหมดหน้าจอคอมพิวเตอร์และแท็บเล็ตแนวนอน (Desktop) */
     .brand-logo {
         height: 100px;
         width: auto;
-        transition: all 0.2s ease-in-out;
+        object-fit: contain;
+        transition: all 0.2s ease;
     }
     .brand-text {
-        font-size: 1.75rem;
+        font-size: 1.85rem;
         white-space: nowrap;
     }
 
-    /* 📱 ปรับแต่งพิเศษสำหรับหน้าจอมือถือแนวตั้ง (Mobile Portrait) */
+    /* 📱 สไตล์หักดิบสำหรับหน้าจอมือถือขนาดเล็กและแนวตั้ง (Mobile Portrait < 576px) */
     @media (max-width: 575.98px) {
         .navbar .container {
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: flex !important;
+            flex-direction: row !important;
+            flex-wrap: nowrap !important; /* ห้ามแตกแถวระหว่างชุดโลโก้กับปุ่มกด */
+            align-items: center !important;
+            justify-content: space-between !important;
         }
+
         .responsive-brand {
-            max-width: 75%; /* ป้องกันชื่อบริษัทไปเบียดปุ่มกด */
+            display: flex !important;
+            align-items: center !important;
+            max-width: 70% !important; /* บังคับให้ส่วนชื่อบริษัทใช้พื้นที่ได้แค่ 70% ป้องกันดันปุ่มหลุดจอ */
+            margin-right: 0 !important;
         }
+
         .brand-logo {
-            height: 50px !important; /* ย่อโลโก้ลงให้พอดีในแนวตั้ง */
+            height: 45px !important; /* ย่อขนาดโลโก้ลงมาให้พอดี */
+            flex-shrink: 0 !important;
         }
+
         .brand-text {
-            font-size: 1.1rem !important; /* ปรับขนาดฟอนต์ให้พอดี ไม่ตัดบรรทัดน่าเกลียด */
-            white-space: normal; /* ยอมให้ตัดคำกรณีจอแคบสุดๆ */
-            line-height: 1.2;
+            font-size: 1.05rem !important; /* ย่อขนาดตัวอักษรลงเพื่อให้แสดงผลพอดี */
+            white-space: normal !important; /* ยอมให้ตัดคำเป็น 2 บรรทัดได้ในกรณีที่จอแคบมากๆ */
+            line-height: 1.1 !important;
+            word-break: break-word !important;
+        }
+
+        .navbar-toggler {
+            padding: 4px 8px !important;
+            font-size: 0.85rem !important; /* ย่อขนาดปุ่ม Hamburger ลงเล็กน้อย */
+            flex-shrink: 0 !important;
+        }
+
+        /* จัดระเบียบเมนูด้านในตอนกดขยายออก */
+        #navbarText {
+            width: 100% !important;
         }
         #main-nav .nav-link {
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             font-size: 1.2rem !important;
+            padding: 10px 0 !important;
         }
         #main-nav .nav-link:last-child {
             border-bottom: none;

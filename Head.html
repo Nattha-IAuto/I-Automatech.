@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container">
-        <a class="navbar-brand d-flex align-items-center fw-bold fs-2 text-white" href="index.html">
-            <img src="Logo.png" alt="โลโก้บริษัท" style="height: 120px;" class="mb-1 me-3">
-            <span>I-Automatech Company</span>
+    <div class="container px-3">
+        <a class="navbar-brand d-flex align-items-center fw-bold text-white responsive-brand" href="index.html">
+            <img src="Logo.png" alt="โลโก้บริษัท" class="mb-1 me-3 brand-logo">
+            <span class="brand-text">I-Automatech Company</span>
         </a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,11 +10,44 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarText">
-            <div class="navbar-nav ms-auto" id="main-nav">
-                <a class="nav-link fs-3" href="index.html">Home</a>
-                <a class="nav-link fs-3" href="about.html">About Us</a>
-                <a class="nav-link fs-3" href="contact.html">Contact</a>
+            <div class="navbar-nav ms-auto text-center py-2 py-lg-0" id="main-nav">
+                <a class="nav-link fs-3 py-2 px-3" href="index.html">Home</a>
+                <a class="nav-link fs-3 py-2 px-3" href="about.html">About Us</a>
+                <a class="nav-link fs-3 py-2 px-3" href="contact.html">Contact</a>
             </div>
         </div>
     </div>
 </nav>
+
+<style>
+    /* ขนาดตั้งต้นสำหรับหน้าจอใหญ่ (Desktop) */
+    .brand-logo {
+        height: 120px;
+        transition: all 0.3s ease;
+    }
+    .brand-text {
+        font-size: calc(1.325rem + 0.9vw); /* อิงตามขนาดเดิม fs-2 ของ Bootstrap */
+    }
+
+    /* 📱 สไตล์เฉพาะเมื่อแสดงผลบนหน้าจอมือถือ (Mobile เท่านั้น) */
+    @media (max-width: 991.98px) {
+        .brand-logo {
+            height: 60px !important; /* ย่อขนาดโลโก้ลงครึ่งหนึ่งไม่ให้เบียดปุ่มเมนู */
+            margin-right: 10px !important;
+        }
+        .brand-text {
+            font-size: 1.15rem !important; /* ย่อชื่อบริษัทลงให้อยู่ในบรรทัดเดียวพอดี */
+        }
+        .navbar-brand {
+            margin-right: 0 !important;
+        }
+        /* จัดระยะห่างของลิงก์เมนูแต่ละตัวในเวอร์ชันมือถือให้กดง่ายขึ้น */
+        #main-nav .nav-link {
+            font-size: 1.35rem !important; /* ย่อขนาดฟอนต์เมนูลงเล็กน้อยให้พอดีตา */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        #main-nav .nav-link:last-child {
+            border-bottom: none;
+        }
+    }
+</style>

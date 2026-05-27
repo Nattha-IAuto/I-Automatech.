@@ -12,15 +12,15 @@
 </nav>
 
 <script>
-    // ใช้คำสั่งนี้เพื่อให้รันได้ทันทีและปลอดภัยที่สุด
-    (function() {
+(function() {
     const path = window.location.pathname.toLowerCase();
     const navLinks = document.querySelectorAll('#main-nav .nav-link');
 
-    // เช็กก่อนเลยว่าตอนนี้อยู่หน้าไหน
-    const isAbout = path.includes('about');
-    const isContact = path.includes('contact');
-    const isHome = !isAbout && !isContact; // ถ้าไม่ใช่ทั้งคู่ แปลว่าเป็นหน้า Home
+    // เช็กเงื่อนไขหาหน้าปัจจุบัน
+    const isAbout = path.includes('about.html');
+    const isContact = path.includes('contact.html');
+    // ถ้าไม่ใช่ About และไม่ใช่ Contact หรือ path ลงท้ายด้วยหน้าแรก ให้ถือว่าเป็น Home
+    const isHome = (!isAbout && !isContact) || path.includes('index.html') || path.endsWith('/');
 
     navLinks.forEach(link => {
         const href = link.getAttribute('href').toLowerCase();
@@ -33,7 +33,7 @@
         } else if (href === 'contact.html' && isContact) {
             link.classList.add('active', 'text-white');
         } else {
-            // ลิงก์ไหนที่ไม่ตรงกับหน้าปัจจุบัน ให้กลายเป็นสีจางทั้งหมด
+            // ลิงก์ที่ไม่ใช่หน้าปัจจุบันให้เปลี่ยนเป็นสีจาง
             link.classList.add('text-white-50');
         }
     });

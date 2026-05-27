@@ -1,29 +1,39 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
-        <img src="Logo.png" alt="โลโก้บริษัท" style="height: 120px;" class="mb-1 me-3">
-        <a class="navbar-brand fw-bold fs-2 text-white" href="index.html">I-Automatech Company</a>
+        <a class="navbar-brand d-flex align-items-center fw-bold fs-2 text-white" href="index.html">
+            <img src="Logo.png" alt="โลโก้บริษัท" style="height: 120px;" class="mb-1 me-3">
+            <span>I-Automatech Company</span>
+        </a>
         
-        <div class="navbar-nav ms-auto" id="main-nav">
-            <a class="nav-link fs-3" href="index.html">Home</a>
-            <a class="nav-link fs-3" href="about.html">About Us</a>
-            <a class="nav-link fs-3" href="contact.html">Contact</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarText">
+            <div class="navbar-nav ms-auto" id="main-nav">
+                <a class="nav-link fs-3" href="index.html">Home</a>
+                <a class="nav-link fs-3" href="about.html">About Us</a>
+                <a class="nav-link fs-3" href="contact.html">Contact</a>
+            </div>
         </div>
     </div>
 </nav>
 
 <script>
 (function() {
-    const path = window.location.pathname.toLowerCase();
+    // ปรับปรุงการดึงเฉพาะชื่อไฟล์ตัวท้ายสุดมาเช็กเพื่อความแม่นยำ
+    const path = window.location.pathname.split("/").pop().toLowerCase();
     const navLinks = document.querySelectorAll('#main-nav .nav-link');
 
-    // เช็กเงื่อนไขหาหน้าปัจจุบัน
+    // ตรวจสอบเงื่อนไขหน้าปัจจุบัน (รองรับกรณีหน้าแรกเป็นค่าว่าง หรือ / )
     const isAbout = path.includes('about.html');
     const isContact = path.includes('contact.html');
-    // ถ้าไม่ใช่ About และไม่ใช่ Contact หรือ path ลงท้ายด้วยหน้าแรก ให้ถือว่าเป็น Home
-    const isHome = (!isAbout && !isContact) || path.includes('index.html') || path.endsWith('/');
+    const isHome = path === '' || path === 'index.html' || (!isAbout && !isContact);
 
     navLinks.forEach(link => {
         const href = link.getAttribute('href').toLowerCase();
+        
+        // ล้างคลาสสีและสถานะเก่าออกทั้งหมดก่อน
         link.classList.remove('active', 'text-white', 'text-white-50');
 
         if (href === 'index.html' && isHome) {
@@ -33,7 +43,7 @@
         } else if (href === 'contact.html' && isContact) {
             link.classList.add('active', 'text-white');
         } else {
-            // ลิงก์ที่ไม่ใช่หน้าปัจจุบันให้เปลี่ยนเป็นสีจาง
+            // หน้าอื่น ๆ ที่ไม่ได้เปิดอยู่จะปรับให้เป็นสีขาวจาง (Opacity 50%)
             link.classList.add('text-white-50');
         }
     });

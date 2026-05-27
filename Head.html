@@ -20,30 +20,34 @@
 </nav>
 
 <script>
-// สั่งให้สคริปต์รอให้แท็ก HTML ถูกสร้างเสร็จใน DOM ก่อนทำงาน 0.05 วินาที เพื่อป้องกันการชนกันของฟังก์ชัน
+// หน่วงเวลาให้ทำการโหลดเมนูให้เสร็จสมบูรณ์ก่อนคำนวณสี
 setTimeout(function() {
-    const currentUrl = window.location.href.toLowerCase();
+    const path = window.location.pathname.toLowerCase();
     const navLinks = document.querySelectorAll('#main-nav .nav-link');
-
-    const isAbout = currentUrl.includes('about.html');
-    const isContact = currentUrl.includes('contact.html');
-    // ถ้าไม่มีคำว่า about และ contact เลย ให้เคลมว่าเป็นหน้าแรกทันที
-    const isHome = !isAbout && !isContact;
+    
+    // ค้นหาสถานะหน้าปัจจุบัน
+    let isAbout = path.includes('about.html');
+    let isContact = path.includes('contact.html');
+    
+    // กฎเหล็ก: ถ้าไม่ใช่หน้า About และไม่ใช่หน้า Contact ให้เหมาว่าเป็นหน้า Home ทันที (แก้บั๊กเปิดครั้งแรก)
+    let isHome = !isAbout && !isContact;
 
     navLinks.forEach(link => {
         const href = link.getAttribute('href').toLowerCase();
         
+        // เคลียร์คลาสสีเก่าออกให้หมดก่อน
         link.classList.remove('active', 'text-white', 'text-white-50');
 
-        if (href.includes('index.html') && isHome) {
+        if (isHome && href.includes('index.html')) {
             link.classList.add('active', 'text-white');
-        } else if (href.includes('about.html') && isAbout) {
+        } else if (isAbout && href.includes('about.html')) {
             link.classList.add('active', 'text-white');
-        } else if (href.includes('contact.html') && isContact) {
+        } else if (isContact && href.includes('contact.html')) {
             link.classList.add('active', 'text-white');
         } else {
+            // หน้าอื่นๆ ที่ไม่ได้เปิดอยู่ ให้เป็นสีขาวจาง 50%
             link.classList.add('text-white-50');
         }
     });
-}, 50);
+}, 80); // ปรับเวลาเป็น 80ms เพื่อให้แน่ใจว่าทำงานหลัง fetch เสร็จชัวร์ๆ
 </script>

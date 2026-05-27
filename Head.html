@@ -11,43 +11,10 @@
 
         <div class="collapse navbar-collapse" id="navbarText">
             <div class="navbar-nav ms-auto" id="main-nav">
-                <a class="nav-link fs-3" href="index.html">Home</a>
-                <a class="nav-link fs-3" href="about.html">About Us</a>
-                <a class="nav-link fs-3" href="contact.html">Contact</a>
+                <a class="nav-link fs-3 text-white-50" href="index.html">Home</a>
+                <a class="nav-link fs-3 text-white-50" href="about.html">About Us</a>
+                <a class="nav-link fs-3 text-white-50" href="contact.html">Contact</a>
             </div>
         </div>
     </div>
 </nav>
-
-<script>
-// หน่วงเวลาให้ทำการโหลดเมนูให้เสร็จสมบูรณ์ก่อนคำนวณสี
-setTimeout(function() {
-    const path = window.location.pathname.toLowerCase();
-    const navLinks = document.querySelectorAll('#main-nav .nav-link');
-    
-    // ค้นหาสถานะหน้าปัจจุบัน
-    let isAbout = path.includes('about.html');
-    let isContact = path.includes('contact.html');
-    
-    // กฎเหล็ก: ถ้าไม่ใช่หน้า About และไม่ใช่หน้า Contact ให้เหมาว่าเป็นหน้า Home ทันที (แก้บั๊กเปิดครั้งแรก)
-    let isHome = !isAbout && !isContact;
-
-    navLinks.forEach(link => {
-        const href = link.getAttribute('href').toLowerCase();
-        
-        // เคลียร์คลาสสีเก่าออกให้หมดก่อน
-        link.classList.remove('active', 'text-white', 'text-white-50');
-
-        if (isHome && href.includes('index.html')) {
-            link.classList.add('active', 'text-white');
-        } else if (isAbout && href.includes('about.html')) {
-            link.classList.add('active', 'text-white');
-        } else if (isContact && href.includes('contact.html')) {
-            link.classList.add('active', 'text-white');
-        } else {
-            // หน้าอื่นๆ ที่ไม่ได้เปิดอยู่ ให้เป็นสีขาวจาง 50%
-            link.classList.add('text-white-50');
-        }
-    });
-}, 80); // ปรับเวลาเป็น 80ms เพื่อให้แน่ใจว่าทำงานหลัง fetch เสร็จชัวร์ๆ
-</script>

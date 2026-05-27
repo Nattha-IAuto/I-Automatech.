@@ -12,23 +12,30 @@
 </nav>
 
 <script>
-    // ดึงชื่อไฟล์ปัจจุบันออกมา เช่น index.html, about.html
-    const currentPage = window.location.pathname.split("/").pop();
+    // ดึง URL ทั้งหมดมาเช็ก
+    const currentPath = window.location.pathname;
     
     // ค้นหาลิงก์ทั้งหมดในเมนู
     document.querySelectorAll('#main-nav .nav-link').forEach(link => {
         const linkPage = link.getAttribute('href');
         
-        // เช็กเพิ่มเติม: ถ้าเปิดหน้าแรก (currentPage เป็นค่าว่าง) ให้มองเป็น index.html ไปเลย
-        const isHomePage = currentPage === '' || currentPage === 'index.html';
+        // ล้างคลาสเก่าออกก่อนเพื่อป้องกันการซ้ำซ้อน
+        link.classList.remove('active', 'text-white', 'text-white-50');
 
-        if ((linkPage === 'index.html' && isHomePage) || currentPage === linkPage) {
-            link.classList.add('active', 'text-white');
-            link.classList.remove('text-white-50'); // ป้องกันกรณี class ซ้ำซ้อน
+        if (linkPage === 'index.html') {
+            // ถ้าเป็นปุ่ม Home: จะสว่างก็ต่อเมื่อ URL มีคำว่า index.html หรือเป็นหน้าแรกสุด (ที่ไม่มี about หรือ contact)
+            if (currentPath.includes('index.html') || (!currentPath.includes('about.html') && !currentPath.includes('contact.html'))) {
+                link.classList.add('active', 'text-white');
+            } else {
+                link.classList.add('text-white-50');
+            }
         } else {
-            // หน้าอื่นที่ไม่ใช่หน้าปัจจุบัน ให้ดับลงเป็นสีขาวจาง (สีเทา)
-            link.classList.add('text-white-50');
-            link.classList.remove('active', 'text-white');
+            // ถ้าเป็นปุ่มอื่นๆ (about.html, contact.html): ให้เช็กตามชื่อไฟล์ปกติ
+            if (currentPath.includes(linkPage)) {
+                link.classList.add('active', 'text-white');
+            } else {
+                link.classList.add('text-white-50');
+            }
         }
     });
 </script>

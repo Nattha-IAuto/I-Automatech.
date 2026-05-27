@@ -1,13 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
         <img src="Logo.png" alt="โลโก้บริษัท" style="height: 120px;" class="mb-1 me-3">
-        <a class="navbar-brand fw-bold fs-2" href="index.html">I-Automatech Company</a>
+        <a class="navbar-brand fw-bold fs-2 text-white" href="index.html">I-Automatech Company</a>
         
-        <div class="navbar-nav ms-auto">
-            <a class="nav-link fs-3 active" aria-current="page" href="index.html">Home</a>
-            
+        <div class="navbar-nav ms-auto" id="main-nav">
+            <a class="nav-link fs-3" href="index.html">Home</a>
             <a class="nav-link fs-3" href="about.html">About Us</a>
             <a class="nav-link fs-3" href="contact.html">Contact</a>
         </div>
     </div>
 </nav>
+
+<script>
+    // ดึงชื่อไฟล์ปัจจุบันออกมา เช่น index.html, about.html
+    const currentPage = window.location.pathname.split("/").pop();
+    
+    // ค้นหาลิงก์ทั้งหมดในเมนู
+    document.querySelectorAll('#main-nav .nav-link').forEach(link => {
+        const linkPage = link.getAttribute('href');
+        
+        // ถ้าชื่อไฟล์ตรงกัน หรือถ้าเปิดมาหน้าแรกสุดแล้วไม่มีชื่อไฟล์ (currentPage เป็นค่าว่าง) ให้ปุ่ม Home สว่าง
+        if (currentPage === linkPage || (currentPage === '' && linkPage === 'index.html')) {
+            link.classList.add('active', 'text-white');
+        } else {
+            // หน้าอื่นที่ไม่ใช่หน้าปัจจุบัน ให้ดับลงเป็นสีขาวจาง (สีเทา)
+            link.classList.add('text-white-50');
+        }
+    });
+</script>

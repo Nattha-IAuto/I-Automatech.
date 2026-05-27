@@ -21,29 +21,31 @@
 
 <script>
 (function() {
-    // ปรับปรุงการดึงเฉพาะชื่อไฟล์ตัวท้ายสุดมาเช็กเพื่อความแม่นยำ
-    const path = window.location.pathname.split("/").pop().toLowerCase();
+    // ดึง URL ทั้งหมดมาแปลงเป็นตัวพิมพ์เล็ก เพื่อป้องกันปัญหา Case Sensitive
+    const currentUrl = window.location.href.toLowerCase();
     const navLinks = document.querySelectorAll('#main-nav .nav-link');
 
-    // ตรวจสอบเงื่อนไขหน้าปัจจุบัน (รองรับกรณีหน้าแรกเป็นค่าว่าง หรือ / )
-    const isAbout = path.includes('about.html');
-    const isContact = path.includes('contact.html');
-    const isHome = path === '' || path === 'index.html' || (!isAbout && !isContact);
+    // ตรวจสอบจากชื่อหน้าตรงๆ ใน URL
+    const isAbout = currentUrl.includes('about.html');
+    const isContact = currentUrl.includes('contact.html');
+    
+    // กฎเหล็ก: ถ้าไม่มีคำว่า about และ contact อยู่ใน URL เลย แปลว่าเป็นหน้าแรก (Home) แน่นอน
+    const isHome = !isAbout && !isContact;
 
     navLinks.forEach(link => {
         const href = link.getAttribute('href').toLowerCase();
         
-        // ล้างคลาสสีและสถานะเก่าออกทั้งหมดก่อน
+        // ล้างคลาสสีเก่าออกให้หมดก่อนทำงาน
         link.classList.remove('active', 'text-white', 'text-white-50');
 
-        if (href === 'index.html' && isHome) {
+        if (href.includes('index.html') && isHome) {
             link.classList.add('active', 'text-white');
-        } else if (href === 'about.html' && isAbout) {
+        } else if (href.includes('about.html') && isAbout) {
             link.classList.add('active', 'text-white');
-        } else if (href === 'contact.html' && isContact) {
+        } else if (href.includes('contact.html') && isContact) {
             link.classList.add('active', 'text-white');
         } else {
-            // หน้าอื่น ๆ ที่ไม่ได้เปิดอยู่จะปรับให้เป็นสีขาวจาง (Opacity 50%)
+            // หน้าอื่นที่ไม่ได้ถูกเปิดอยู่ ให้เป็นสีขาวจางลง 50%
             link.classList.add('text-white-50');
         }
     });

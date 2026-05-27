@@ -14,40 +14,28 @@
 <script>
     // ใช้คำสั่งนี้เพื่อให้รันได้ทันทีและปลอดภัยที่สุด
     (function() {
-        // ดึงแค่ path ด้านหลังสุดมาเช็ก
-        const path = window.location.pathname.toLowerCase();
-        
-        // ค้นหาปุ่มลิงก์ทั้งหมด
-        const navLinks = document.querySelectorAll('#main-nav .nav-link');
+    const path = window.location.pathname.toLowerCase();
+    const navLinks = document.querySelectorAll('#main-nav .nav-link');
 
-        navLinks.forEach(link => {
-            const href = link.getAttribute('href').toLowerCase();
+    // เช็กก่อนเลยว่าตอนนี้อยู่หน้าไหน
+    const isAbout = path.includes('about');
+    const isContact = path.includes('contact');
+    const isHome = !isAbout && !isContact; // ถ้าไม่ใช่ทั้งคู่ แปลว่าเป็นหน้า Home
 
-            // เคลียร์คลาสเริ่มต้นทั้งหมดออกก่อนเพื่อไม่ให้ตีกัน
-            link.classList.remove('active', 'text-white', 'text-white-50');
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href').toLowerCase();
+        link.classList.remove('active', 'text-white', 'text-white-50');
 
-            if (href === 'index.html') {
-                // ปุ่ม Home: สว่างเมื่อเจอคำว่า index.html หรือ path ลงท้ายด้วยชื่อโปรเจกต์ / หรือไม่มีคำว่า about/contact
-                if (path.endsWith('index.html') || (path.endsWith('/index.html') || path.endsWith('/') || (!path.includes('about') && !path.includes('contact'))) {
-                    link.classList.add('active', 'text-white');
-                } else {
-                    link.classList.add('text-white-50');
-                }
-            } else if (href === 'about.html') {
-                // ปุ่ม About Us
-                if (path.includes('about')) {
-                    link.classList.add('active', 'text-white');
-                } else {
-                    link.classList.add('text-white-50');
-                }
-            } else if (href === 'contact.html') {
-                // ปุ่ม Contact
-                if (path.includes('contact')) {
-                    link.classList.add('active', 'text-white');
-                } else {
-                    link.classList.add('text-white-50');
-                }
-            }
-        });
-    })();
+        if (href === 'index.html' && isHome) {
+            link.classList.add('active', 'text-white');
+        } else if (href === 'about.html' && isAbout) {
+            link.classList.add('active', 'text-white');
+        } else if (href === 'contact.html' && isContact) {
+            link.classList.add('active', 'text-white');
+        } else {
+            // ลิงก์ไหนที่ไม่ตรงกับหน้าปัจจุบัน ให้กลายเป็นสีจางทั้งหมด
+            link.classList.add('text-white-50');
+        }
+    });
+})();
 </script>

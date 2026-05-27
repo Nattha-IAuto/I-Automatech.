@@ -12,36 +12,42 @@
 </nav>
 
 <script>
-    // บังคับให้สคริปต์ทำงานเมื่อหน้าเว็บ (DOM) โหลดเสร็จสมบูรณ์แล้วเท่านั้น
-    window.addEventListener('DOMContentLoaded', () => {
-        // ดึง URL เต็มของหน้าปัจจุบันมาเช็ก (แปลงเป็นพิมพ์เล็กเพื่อป้องกันการพิมพ์ผิด)
-        const currentUrl = window.location.href.toLowerCase();
+    // ใช้คำสั่งนี้เพื่อให้รันได้ทันทีและปลอดภัยที่สุด
+    (function() {
+        // ดึงแค่ path ด้านหลังสุดมาเช็ก
+        const path = window.location.pathname.toLowerCase();
         
-        // ค้นหาปุ่มลิงก์ทั้งหมดใน Navbar
+        // ค้นหาปุ่มลิงก์ทั้งหมด
         const navLinks = document.querySelectorAll('#main-nav .nav-link');
 
         navLinks.forEach(link => {
-            const linkPage = link.getAttribute('href').toLowerCase();
-            
-            // ล้างคลาสสีเก่าออกทั้งหมดก่อนเพื่อความชัวร์
+            const href = link.getAttribute('href').toLowerCase();
+
+            // เคลียร์คลาสเริ่มต้นทั้งหมดออกก่อนเพื่อไม่ให้ตีกัน
             link.classList.remove('active', 'text-white', 'text-white-50');
 
-            if (linkPage === 'index.html') {
-                // เงื่อนไขสำหรับปุ่ม Home: 
-                // ถ้า URL มีคำว่า 'index.html' หรือเปิดมาแล้วไม่มีคำว่า 'about' และ 'contact' เลย (คือหน้าแรกสุด)
-                if (currentUrl.includes('index.html') || (!currentUrl.includes('about') && !currentUrl.includes('contact'))) {
+            if (href === 'index.html') {
+                // ปุ่ม Home: สว่างเมื่อเจอคำว่า index.html หรือ path ลงท้ายด้วยชื่อโปรเจกต์ / หรือไม่มีคำว่า about/contact
+                if (path.endsWith('index.html') || path.endsWith('/') || (!path.includes('about') && !path.includes('contact'))) {
                     link.classList.add('active', 'text-white');
                 } else {
                     link.classList.add('text-white-50');
                 }
-            } else {
-                // เงื่อนไขสำหรับหน้าอื่นๆ (About, Contact): ถ้า URL ปัจจุบันมีชื่อไฟล์นั้นอยู่ ให้เปิดไฟสว่าง
-                if (currentUrl.includes(linkPage)) {
+            } else if (href === 'about.html') {
+                // ปุ่ม About Us
+                if (path.includes('about')) {
+                    link.classList.add('active', 'text-white');
+                } else {
+                    link.classList.add('text-white-50');
+                }
+            } else if (href === 'contact.html') {
+                // ปุ่ม Contact
+                if (path.includes('contact')) {
                     link.classList.add('active', 'text-white');
                 } else {
                     link.classList.add('text-white-50');
                 }
             }
         });
-    });
+    })();
 </script>

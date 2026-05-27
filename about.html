@@ -158,18 +158,20 @@
 
     <script>
     fetch('Head.html') 
-    .then(response => { if (!response.ok) throw new Error(); return response.text(); })
+    .then(response => response.text())
     .then(data => {
         document.getElementById('Head-placeholder').innerHTML = data;
-        
-        // สั่งงานตรงๆ: บังคับให้ปุ่มที่สอง (About Us) ติดสีขาวทันที
-        const secondLink = document.querySelector('#main-nav .nav-link:nth-child(2)');
-        if(secondLink) {
-            secondLink.classList.remove('text-white-50');
-            secondLink.classList.add('active', 'text-white');
+
+        const links = document.querySelectorAll('#main-nav .nav-link');
+        links.forEach(link => link.style.setProperty('color', 'rgba(255,255,255,0.5)', 'important'));
+
+        // บังคับให้ปุ่มที่ 2 (About Us) เป็นสีขาวสว่าง
+        const activeLink = document.querySelector('#main-nav .nav-link:nth-child(2)');
+        if (activeLink) {
+            activeLink.style.setProperty('color', '#ffffff', 'important');
+            activeLink.classList.add('active');
         }
     });
-
 // 2. ดึงข้อมูลไฟล์ Foot.html (แถบข้อมูลด้านล่าง)
 fetch('Foot.html')
     .then(response => {

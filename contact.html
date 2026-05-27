@@ -85,16 +85,19 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-       fetch('Head.html') 
-    .then(response => { if (!response.ok) throw new Error(); return response.text(); })
+     fetch('Head.html') 
+    .then(response => response.text())
     .then(data => {
         document.getElementById('Head-placeholder').innerHTML = data;
-        
-        // สั่งงานตรงๆ: บังคับให้ปุ่มที่สาม (Contact) ติดสีขาวทันที
-        const thirdLink = document.querySelector('#main-nav .nav-link:nth-child(3)');
-        if(thirdLink) {
-            thirdLink.classList.remove('text-white-50');
-            thirdLink.classList.add('active', 'text-white');
+
+        const links = document.querySelectorAll('#main-nav .nav-link');
+        links.forEach(link => link.style.setProperty('color', 'rgba(255,255,255,0.5)', 'important'));
+
+        // บังคับให้ปุ่มที่ 3 (Contact) เป็นสีขาวสว่าง
+        const activeLink = document.querySelector('#main-nav .nav-link:nth-child(3)');
+        if (activeLink) {
+            activeLink.style.setProperty('color', '#ffffff', 'important');
+            activeLink.classList.add('active');
         }
     });
 // 2. ดึงข้อมูลไฟล์ Foot.html (แถบข้อมูลด้านล่าง)

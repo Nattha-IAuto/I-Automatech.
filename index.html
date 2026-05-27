@@ -8,7 +8,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
-        /* แต่งสีสันเพิ่มเติมให้ดูเป็นแนวโรงงานอุตสาหกรรม (น้ำเงิน-ฟ้า) */
+        /* ==========================================
+           💻 สไตล์หลักสำหรับหน้าจอคอมพิวเตอร์ (Desktop) 
+           ========================================== */
         .navbar { 
             background-color: #000000; 
         }
@@ -29,6 +31,35 @@
         .img-dimension {
             box-shadow: 0 10px 30px rgba(45, 21, 21, 0.2);
         }
+
+        /* ==========================================
+           📱 สไตล์เฉพาะสำหรับหน้าจอมือถือ (Mobile เท่านั้น)
+           จะไม่กระทบหรือเปลี่ยนแปลงการแสดงผลบนคอมพิวเตอร์เลย
+           ========================================== */
+        @media (max-width: 767.98px) {
+            .hero-section {
+                padding: 60px 15px; /* ลดความสูงของแถบน้ำเงินลงให้กระชับบนมือถือ */
+                margin-top: 10px !important; 
+            }
+            .hero-section h1 {
+                font-size: 1.8rem !important; /* ย่อขนาดหัวข้อหลักไม่ให้ยาวล้นจอมือถือ */
+            }
+            .hero-section p {
+                font-size: 1rem !important; 
+            }
+            .display-5 {
+                font-size: 2rem !important; /* ปรับขนาดหัวข้อ Our Services */
+            }
+            .text-muted.fs-4 {
+                font-size: 1.2rem !important; 
+            }
+            .card-title {
+                font-size: 1.25rem !important; 
+            }
+            .card-text {
+                font-size: 0.95rem !important; /* ย่อตัวหนังสืออธิบายการ์ดให้อ่านง่ายพอดีสายตา */
+            }
+        }
     </style>
 </head>
 <body>
@@ -36,14 +67,14 @@
     <div id="Head-placeholder"></div>
     
     <div class="hero-section mt-5">
-        <div class="container">
+        <div class="container px-4"> 
             <h1 class="display-4 fw-bold mb-3">Customer satisfaction is our duty</h1>
             <p class="lead mb-4">We are committed to providing the best service and solutions to meet your needs.</p>
-            <a href="contact.html" class="btn btn-warning btn-lg fw-bold">Consult Us</a>
+            <a href="contact.html" class="btn btn-warning btn-lg fw-bold w-sm-100">Consult Us</a> 
         </div>
     </div>
 
-    <div class="container my-5">
+    <div class="container my-5 px-4">
         <div class="text-center mb-5">
             <h2 class="fw-bold display-5">Our Services</h2>
             <p class="text-muted fs-4">สินค้า / บริการของเรา</p>
@@ -51,8 +82,8 @@
 
         <div class="row g-4 mb-5">
             
-            <div class="col-md-4">
-                <div class="card service-card h-100 p-3">
+            <div class="col-12 col-md-4">
+                <div class="card service-card h-100 p-2 p-md-3">
                     <div class="card-body">
                         <h5 class="card-title fw-bold text-primary">
                             <a href="J_job.html" class="text-primary text-decoration-none">Jig Fixture</a>
@@ -62,8 +93,8 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card service-card h-100 p-3">
+            <div class="col-12 col-md-4">
+                <div class="card service-card h-100 p-2 p-md-3">
                     <div class="card-body">
                         <h5 class="card-title fw-bold text-primary">
                             <a href="M_Job.html" class="text-primary text-decoration-none">Machine Order</a>
@@ -73,8 +104,8 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="card service-card h-100 p-3">
+            <div class="col-12 col-md-4">
+                <div class="card service-card h-100 p-2 p-md-3">
                     <div class="card-body">
                         <h5 class="card-title fw-bold text-primary">
                             <a href="MD_job.html" class="text-primary text-decoration-none">Modify</a>
@@ -84,8 +115,8 @@
                 </div>
             </div>
         
-            <div class="col-md-4 mx-auto">
-                <div class="card service-card h-100 p-3">
+            <div class="col-12 col-md-4 mx-auto">
+                <div class="card service-card h-100 p-2 p-md-3">
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold text-primary">
                             <a href="Our_customer.html" class="text-primary text-decoration-none">Our Customer</a>
@@ -95,37 +126,39 @@
                 </div>
             </div>
 
-        </div> </div> <div id="Foot-placeholder"></div>
+        </div> 
+    </div> 
+
+    <div id="Foot-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-      fetch('Head.html') 
-    .then(response => {
-        if (!response.ok) throw new Error("หาไฟล์ Head.html ไม่เจอจ้า");
-        return response.text();
-    })
-    .then(data => {
-        document.getElementById('Head-placeholder').innerHTML = data;
+    fetch('Head.html') 
+        .then(response => {
+            if (!response.ok) throw new Error("หาไฟล์ Head.html ไม่เจอจ้า");
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('Head-placeholder').innerHTML = data;
 
-        // บังคับเคลียร์สีลิงก์ทุกตัวเป็นสีขาวจางก่อน
-        const links = document.querySelectorAll('#main-nav .nav-link');
-        links.forEach(link => link.style.setProperty('color', 'rgba(255,255,255,0.5)', 'important'));
+            // บังคับเคลียร์สีลิงก์ทุกตัวเป็นสีขาวจางก่อน
+            const links = document.querySelectorAll('#main-nav .nav-link');
+            links.forEach(link => link.style.setProperty('color', 'rgba(255,255,255,0.5)', 'important'));
 
-        // บังคับให้ปุ่มที่ 1 (Home) เป็นสีขาวสว่างเข้มข้นที่สุด
-        const activeLink = document.querySelector('#main-nav .nav-link:nth-child(1)');
-        if (activeLink) {
-            activeLink.style.setProperty('color', '#ffffff', 'important');
-            activeLink.classList.add('active');
-        }
-    })
-    .catch(error => console.error('มีปัญหาในการโหลด Head:', error));
+            // บังคับให้ปุ่มที่ 1 (Home) เป็นสีขาวสว่างเข้มข้นที่สุด
+            const activeLink = document.querySelector('#main-nav .nav-link:nth-child(1)');
+            if (activeLink) {
+                activeLink.style.setProperty('color', '#ffffff', 'important');
+                activeLink.classList.add('active');
+            }
+        })
+        .catch(error => console.error('มีปัญหาในการโหลด Head:', error));
 
-// ดึงข้อมูลไฟล์ Foot.html ตามปกติ
-fetch('Foot.html')
-    .then(response => response.text())
-    .then(data => { document.getElementById('Foot-placeholder').innerHTML = data; })
-    .catch(error => console.error(error));
+    fetch('Foot.html')
+        .then(response => response.text())
+        .then(data => { document.getElementById('Foot-placeholder').innerHTML = data; })
+        .catch(error => console.error(error));
     </script>
 </body>
 </html>

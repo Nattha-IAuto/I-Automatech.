@@ -112,6 +112,39 @@
             transform: translateX(calc(-250px * 6)); 
         }
     }
+
+    /* ==========================================
+       📱 สไตล์เฉพาะสำหรับหน้าจอมือถือ (Mobile เท่านั้น)
+       จะไม่กระทบหรือเปลี่ยนแปลงการแสดงผลบนคอมพิวเตอร์เลย
+       ========================================== */
+    @media (max-width: 767.98px) {
+        .about-header h1 {
+            font-size: 2rem !important; /* ปรับย่อหัวข้อลงเล็กน้อยให้กระชับสายตาบนมือถือ */
+            margin-top: 20px !important;
+        }
+        .logo-slider-container {
+            padding: 30px 0 !important; /* ลดขนาดพื้นที่กรอบบนมือถือให้สมดุลพอดีจอ */
+        }
+        .logo-slider-container::before, 
+        .logo-slider-container::after {
+            width: 40px; /* ลดระยะ Fade เงาสีขาวด้านข้างให้กว้างขวางขึ้นเมื่อดูบนมือถือ */
+        }
+        .logo-slide {
+            width: 160px; /* ย่อบล็อกสไลด์ลงมา เพื่อให้สไลด์วิ่งสวยไม่ใหญ่จนเทอะทะเต็มจอมือถือ */
+            height: 100px;
+        }
+        .logo-slide img {
+            max-width: 120px; /* ย่อรูปโลโก้ให้พอดีกับสัดส่วนใหม่ */
+            max-height: 100px;
+        }
+        .logo-slider-track {
+            width: calc(160px * 12); /* คำนวณความยาวรางใหม่สำหรับจอมือถือ */
+        }
+        @keyframes logo-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-160px * 6)); } /* คำนวณระยะหยุด Loop ใหม่ให้เนียนตา */
+        }
+    }
     </style>
 </head>
 <body>
@@ -119,7 +152,7 @@
     <div id="Head-placeholder"></div>
 
     <div class="about-header text-center">
-        <div class="container">
+        <div class="container px-4">
             <h1 class="display-5 fw-bold mt-4">Our Customers</h1>
         </div>
     </div>

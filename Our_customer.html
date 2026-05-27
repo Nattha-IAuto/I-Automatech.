@@ -9,7 +9,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <style>
-    /* แต่งสีสันเพิ่มเติมให้ดูเป็นแนวโรงงานอุตสาหกรรม (น้ำเงิน-ฟ้า) */
+    /* 🌟 เพิ่มตรงนี้: ดึงให้หน้าจอเต็มและจัดโครงสร้าง Flexbox */
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+
     .navbar { 
         background-color: #000000; 
     }           
@@ -28,12 +37,17 @@
         transform: translateY(-5px);
     }
     
-    /* 🌟 จุดแก้ไขที่ 1: ปิดคอมเมนต์ที่ค้างอยู่ตรงนี้ให้ถูกต้อง */
     .img-dimension {
         box-shadow: 0 10px 30px rgba(45, 21, 21, 0.2); 
     }
 
+    /* 🌟 ปรับตรงนี้: เพิ่ม flex: 1 และการจัดกึ่งกลาง (Center) */
     .logo-slider-container {
+        flex: 1; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
         overflow: hidden;
         padding: 50px 0;
         background-color: #ffffff;
@@ -42,7 +56,6 @@
         width: 100%;
     }
 
-    /* สร้างเอฟเฟกต์ Fade ไล่เฉดสีขาวที่หัว-ท้าย */
     .logo-slider-container::before, 
     .logo-slider-container::after {
         position: absolute;
@@ -62,18 +75,14 @@
         background: linear-gradient(to left, #ffffff, transparent);
     }
 
-    /* แถบรางยาวที่วิ่งเคลื่อนที่ */
     .logo-slider-track {
         display: flex;
         align-items: center;
-        /* 🌟 จุดแก้ไขที่ 2: ตั้งความกว้างให้ตรงตามจริง (ความกว้างสไลด์ x จำนวนรูปทั้งหมด 12 รูป) */
         width: calc(250px * 12); 
         animation: logo-scroll 25s linear infinite;
     }
 
-    /* บล็อกใส่โลโก้แต่ละตัว */
     .logo-slide {
-        /* 🌟 จุดแก้ไขที่ 3: ปรับขนาดบล็อกให้พอดีไม่ห่างเกินไป (ใช้ 250px กำลังสวยครับ) */
         width: 250px;
         height: 150px;
         display: flex;
@@ -82,16 +91,14 @@
         flex-shrink: 0;
     }
 
-    /* ปรับแต่งภาพโลโก้ */
     .logo-slide img {
         max-width: 180px;
         height: auto;
         max-height: 150px;
         object-fit: contain;
         transition: all 0.4s ease;
-        /* ปลดฟิลเตอร์เทาออกหากต้องการให้เห็นสีจริง หรือจะเก็บไว้ก็ได้ครับ */
         filter: grayscale(0%);
-        opacity: 100;
+        opacity: 1; /* แก้ไขจาก 100 เป็น 1 */
     }
 
     .logo-slider-track:hover {
@@ -103,50 +110,40 @@
         transform: scale(1.05); 
     }
 
-    /* สั่งให้แถบวิ่งขยับจากขวาไปซ้าย */
     @keyframes logo-scroll {
-        0% {
-            transform: translateX(0);
-        }
-        100% {
-            /* 🌟 จุดแก้ไขที่ 4: ลื่นหัวแตก! ขยับไปทางซ้ายเท่ากับระยะของรูปชุดแรกพอดีเป๊ะ (250px * 6 รูป) */
-            transform: translateX(calc(-250px * 6)); 
-        }
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-250px * 6)); }
     }
 
-    /* ==========================================
-       📱 สไตล์เฉพาะสำหรับหน้าจอมือถือ (Mobile เท่านั้น)
-       จะไม่กระทบหรือเปลี่ยนแปลงการแสดงผลบนคอมพิวเตอร์เลย
-       ========================================== */
     @media (max-width: 767.98px) {
         .about-header h1 {
-            font-size: 2rem !important; /* ปรับย่อหัวข้อลงเล็กน้อยให้กระชับสายตาบนมือถือ */
+            font-size: 2rem !important;
             margin-top: 20px !important;
         }
         .logo-slider-container {
-            padding: 30px 0 !important; /* ลดขนาดพื้นที่กรอบบนมือถือให้สมดุลพอดีจอ */
+            padding: 30px 0 !important;
         }
         .logo-slider-container::before, 
         .logo-slider-container::after {
-            width: 40px; /* ลดระยะ Fade เงาสีขาวด้านข้างให้กว้างขวางขึ้นเมื่อดูบนมือถือ */
+            width: 40px;
         }
         .logo-slide {
-            width: 160px; /* ย่อบล็อกสไลด์ลงมา เพื่อให้สไลด์วิ่งสวยไม่ใหญ่จนเทอะทะเต็มจอมือถือ */
+            width: 160px;
             height: 100px;
         }
         .logo-slide img {
-            max-width: 120px; /* ย่อรูปโลโก้ให้พอดีกับสัดส่วนใหม่ */
+            max-width: 120px;
             max-height: 100px;
         }
         .logo-slider-track {
-            width: calc(160px * 12); /* คำนวณความยาวรางใหม่สำหรับจอมือถือ */
+            width: calc(160px * 12);
         }
         @keyframes logo-scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-160px * 6)); } /* คำนวณระยะหยุด Loop ใหม่ให้เนียนตา */
+            100% { transform: translateX(calc(-160px * 6)); }
         }
     }
-    </style>
+</style>
 </head>
 <body>
 

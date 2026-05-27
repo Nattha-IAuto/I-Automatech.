@@ -19,12 +19,16 @@
     document.querySelectorAll('#main-nav .nav-link').forEach(link => {
         const linkPage = link.getAttribute('href');
         
-        // ถ้าชื่อไฟล์ตรงกัน หรือถ้าเปิดมาหน้าแรกสุดแล้วไม่มีชื่อไฟล์ (currentPage เป็นค่าว่าง) ให้ปุ่ม Home สว่าง
-        if (currentPage === linkPage || (currentPage === '' && linkPage === 'index.html')) {
+        // เช็กเพิ่มเติม: ถ้าเปิดหน้าแรก (currentPage เป็นค่าว่าง) ให้มองเป็น index.html ไปเลย
+        const isHomePage = currentPage === '' || currentPage === 'index.html';
+
+        if ((linkPage === 'index.html' && isHomePage) || currentPage === linkPage) {
             link.classList.add('active', 'text-white');
+            link.classList.remove('text-white-50'); // ป้องกันกรณี class ซ้ำซ้อน
         } else {
             // หน้าอื่นที่ไม่ใช่หน้าปัจจุบัน ให้ดับลงเป็นสีขาวจาง (สีเทา)
             link.classList.add('text-white-50');
+            link.classList.remove('active', 'text-white');
         }
     });
 </script>

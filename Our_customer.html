@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> I-Automatech Company</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+    /* แต่งสีสันเพิ่มเติมให้ดูเป็นแนวโรงงานอุตสาหกรรม (น้ำเงิน-ฟ้า) */
+    .navbar { 
+        background-color: #000000; 
+    }           
+    .hero-section {
+        background-color: #1a3c5f;
+        color: white;
+        padding: 100px 0;
+        text-align: center;
+    }
+    .service-card {
+        border: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: 0.3s;
+    }
+    .service-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* 🌟 จุดแก้ไขที่ 1: ปิดคอมเมนต์ที่ค้างอยู่ตรงนี้ให้ถูกต้อง */
+    .img-dimension {
+        box-shadow: 0 10px 30px rgba(45, 21, 21, 0.2); 
+    }
+
+    .logo-slider-container {
+        overflow: hidden;
+        padding: 50px 0;
+        background-color: #ffffff;
+        white-space: nowrap;
+        position: relative;
+        width: 100%;
+    }
+
+    /* สร้างเอฟเฟกต์ Fade ไล่เฉดสีขาวที่หัว-ท้าย */
+    .logo-slider-container::before, 
+    .logo-slider-container::after {
+        position: absolute;
+        top: 0;
+        width: 100px;
+        height: 100%;
+        content: "";
+        z-index: 2;
+        pointer-events: none;
+    }
+    .logo-slider-container::before {
+        left: 0;
+        background: linear-gradient(to right, #ffffff, transparent);
+    }
+    .logo-slider-container::after {
+        right: 0;
+        background: linear-gradient(to left, #ffffff, transparent);
+    }
+
+    /* แถบรางยาวที่วิ่งเคลื่อนที่ */
+    .logo-slider-track {
+        display: flex;
+        align-items: center;
+        /* 🌟 จุดแก้ไขที่ 2: ตั้งความกว้างให้ตรงตามจริง (ความกว้างสไลด์ x จำนวนรูปทั้งหมด 12 รูป) */
+        width: calc(250px * 12); 
+        animation: logo-scroll 25s linear infinite;
+    }
+
+    /* บล็อกใส่โลโก้แต่ละตัว */
+    .logo-slide {
+        /* 🌟 จุดแก้ไขที่ 3: ปรับขนาดบล็อกให้พอดีไม่ห่างเกินไป (ใช้ 250px กำลังสวยครับ) */
+        width: 250px;
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    /* ปรับแต่งภาพโลโก้ */
+    .logo-slide img {
+        max-width: 180px;
+        height: auto;
+        max-height: 150px;
+        object-fit: contain;
+        transition: all 0.4s ease;
+        /* ปลดฟิลเตอร์เทาออกหากต้องการให้เห็นสีจริง หรือจะเก็บไว้ก็ได้ครับ */
+        filter: grayscale(0%);
+        opacity: 100;
+    }
+
+    .logo-slider-track:hover {
+        animation-play-state: paused; 
+    }
+    .logo-slide img:hover {
+        filter: grayscale(0%);
+        opacity: 1;
+        transform: scale(1.05); 
+    }
+
+    /* สั่งให้แถบวิ่งขยับจากขวาไปซ้าย */
+    @keyframes logo-scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            /* 🌟 จุดแก้ไขที่ 4: ลื่นหัวแตก! ขยับไปทางซ้ายเท่ากับระยะของรูปชุดแรกพอดีเป๊ะ (250px * 6 รูป) */
+            transform: translateX(calc(-250px * 6)); 
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <div id="Head-placeholder"></div>
+
+    <div class="about-header text-center">
+        <div class="container">
+            <h1 class="display-5 fw-bold mt-4">Our Customers</h1>
+        </div>
+    </div>
+
+    <div class="logo-slider-container">
+        <div class="logo-slider-track">
+            <div class="logo-slide"><img src="Cus001.png" alt="Daikin"></div>
+            <div class="logo-slide"><img src="Cus002.png" alt="Ford"></div>
+            <div class="logo-slide"><img src="Cus003.png" alt="Honda"></div>
+            <div class="logo-slide"><img src="Cus004.png" alt="Mitsubishi"></div>
+            <div class="logo-slide"><img src="Cus005.png" alt="Panasonic"></div>
+            <div class="logo-slide"><img src="Cus006.png" alt="Suzuki"></div>
+            
+            <div class="logo-slide"><img src="Cus001.png" alt="Daikin"></div>
+            <div class="logo-slide"><img src="Cus002.png" alt="Ford"></div>
+            <div class="logo-slide"><img src="Cus003.png" alt="Honda"></div>
+            <div class="logo-slide"><img src="Cus004.png" alt="Mitsubishi"></div>
+            <div class="logo-slide"><img src="Cus005.png" alt="Panasonic"></div>
+            <div class="logo-slide"><img src="Cus006.png" alt="Suzuki"></div>
+        </div>
+    </div>
+    
+    <div id="Foot-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    // 1. ดึงข้อมูลไฟล์ Head.html
+    fetch('Head.html') 
+        .then(response => {
+            if (!response.ok) throw new Error("หาไฟล์ Head.html ไม่เจอจ้า");
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('Head-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('มีปัญหาในการโหลด Head:', error));
+
+    // 2. ดึงข้อมูลไฟล์ Foot.html
+    fetch('Foot.html')
+        .then(response => {
+            if (!response.ok) throw new Error("หาไฟล์ Foot.html ไม่เจอจ้า");
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById('Foot-placeholder').innerHTML = data;
+        })
+        .catch(error => console.error('มีปัญหาในการโหลด Foot:', error));
+    </script>
+</body>
+</html>

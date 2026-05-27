@@ -119,7 +119,7 @@
             const currentPath = window.location.pathname;
             document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
                 const linkPath = link.getAttribute('href');
-                if (currentPath.endsWith(linkPath) || (linkPath === 'Web_1.html' && currentPath === '/')) {
+                if (currentPath.endsWith(linkPath) || (linkPath === 'index.html'&& currentPath === '/')) {
                     link.classList.add('active');
                 } else {
                     link.classList.remove('active');

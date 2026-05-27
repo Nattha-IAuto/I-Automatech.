@@ -28,7 +28,7 @@
 
             if (href === 'index.html') {
                 // ปุ่ม Home: สว่างเมื่อเจอคำว่า index.html หรือ path ลงท้ายด้วยชื่อโปรเจกต์ / หรือไม่มีคำว่า about/contact
-                if (path.endsWith('index.html') || path.endsWith('/') || (!path.includes('about') && !path.includes('contact'))) {
+                if (path.endsWith('index.html') || (path.endsWith('/index.html') || path.endsWith('/') || (!path.includes('about') && !path.includes('contact'))) {
                     link.classList.add('active', 'text-white');
                 } else {
                     link.classList.add('text-white-50');

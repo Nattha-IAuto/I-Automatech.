@@ -12,30 +12,36 @@
 </nav>
 
 <script>
-    // ดึง URL ทั้งหมดมาเช็ก
-    const currentPath = window.location.pathname;
-    
-    // ค้นหาลิงก์ทั้งหมดในเมนู
-    document.querySelectorAll('#main-nav .nav-link').forEach(link => {
-        const linkPage = link.getAttribute('href');
+    // บังคับให้สคริปต์ทำงานเมื่อหน้าเว็บ (DOM) โหลดเสร็จสมบูรณ์แล้วเท่านั้น
+    window.addEventListener('DOMContentLoaded', () => {
+        // ดึง URL เต็มของหน้าปัจจุบันมาเช็ก (แปลงเป็นพิมพ์เล็กเพื่อป้องกันการพิมพ์ผิด)
+        const currentUrl = window.location.href.toLowerCase();
         
-        // ล้างคลาสเก่าออกก่อนเพื่อป้องกันการซ้ำซ้อน
-        link.classList.remove('active', 'text-white', 'text-white-50');
+        // ค้นหาปุ่มลิงก์ทั้งหมดใน Navbar
+        const navLinks = document.querySelectorAll('#main-nav .nav-link');
 
-        if (linkPage === 'index.html') {
-            // ถ้าเป็นปุ่ม Home: จะสว่างก็ต่อเมื่อ URL มีคำว่า index.html หรือเป็นหน้าแรกสุด (ที่ไม่มี about หรือ contact)
-            if (currentPath.includes('index.html') || (!currentPath.includes('about.html') && !currentPath.includes('contact.html'))) {
-                link.classList.add('active', 'text-white');
+        navLinks.forEach(link => {
+            const linkPage = link.getAttribute('href').toLowerCase();
+            
+            // ล้างคลาสสีเก่าออกทั้งหมดก่อนเพื่อความชัวร์
+            link.classList.remove('active', 'text-white', 'text-white-50');
+
+            if (linkPage === 'index.html') {
+                // เงื่อนไขสำหรับปุ่ม Home: 
+                // ถ้า URL มีคำว่า 'index.html' หรือเปิดมาแล้วไม่มีคำว่า 'about' และ 'contact' เลย (คือหน้าแรกสุด)
+                if (currentUrl.includes('index.html') || (!currentUrl.includes('about') && !currentUrl.includes('contact'))) {
+                    link.classList.add('active', 'text-white');
+                } else {
+                    link.classList.add('text-white-50');
+                }
             } else {
-                link.classList.add('text-white-50');
+                // เงื่อนไขสำหรับหน้าอื่นๆ (About, Contact): ถ้า URL ปัจจุบันมีชื่อไฟล์นั้นอยู่ ให้เปิดไฟสว่าง
+                if (currentUrl.includes(linkPage)) {
+                    link.classList.add('active', 'text-white');
+                } else {
+                    link.classList.add('text-white-50');
+                }
             }
-        } else {
-            // ถ้าเป็นปุ่มอื่นๆ (about.html, contact.html): ให้เช็กตามชื่อไฟล์ปกติ
-            if (currentPath.includes(linkPage)) {
-                link.classList.add('active', 'text-white');
-            } else {
-                link.classList.add('text-white-50');
-            }
-        }
+        });
     });
 </script>

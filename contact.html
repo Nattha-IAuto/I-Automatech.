@@ -87,36 +87,26 @@
     <script>
         // 1. ดึงข้อมูลไฟล์ Head.html (เมนูด้านบน)
         fetch('Head.html') 
-            .then(response => {
-                if (!response.ok) throw new Error("หาไฟล์ Head.html ไม่เจอจ้า");
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('Head-placeholder').innerHTML = data;
+    .then(response => {
+        if (!response.ok) throw new Error("หาไฟล์ Head.html ไม่เจอจ้า");
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById('Head-placeholder').innerHTML = data;
+        // ปล่อยให้สคริปต์ข้างใน Head.html เป็นคนจัดการคลาสสีเอง
+    })
+    .catch(error => console.error('มีปัญหาในการโหลด Head:', error));
 
-                // ตรวจเช็กและไฮไลท์เมนู Active อัตโนมัติ
-                const currentPath = window.location.pathname;
-                document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-                    const linkPath = link.getAttribute('href');
-                    if (currentPath.endsWith(linkPath) || (linkPath === 'Web_1.html' && currentPath === '/')) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
-            })
-            .catch(error => console.error('มีปัญหาในการโหลด Head:', error));
-
-        // 2. ดึงข้อมูลไฟล์ Foot.html (แถบข้อมูลด้านล่าง)
-        fetch('Foot.html')
-            .then(response => {
-                if (!response.ok) throw new Error("หาไฟล์ Foot.html ไม่เจอจ้า");
-                return response.text();
-            })
-            .then(data => {
-                document.getElementById('Foot-placeholder').innerHTML = data;
-            })
-            .catch(error => console.error('มีปัญหาในการโหลด Foot:', error));
+// 2. ดึงข้อมูลไฟล์ Foot.html (แถบข้อมูลด้านล่าง)
+fetch('Foot.html')
+    .then(response => {
+        if (!response.ok) throw new Error("หาไฟล์ Foot.html ไม่เจอจ้า");
+        return response.text();
+    })
+    .then(data => {
+        document.getElementById('Foot-placeholder').innerHTML = data;
+    })
+    .catch(error => console.error('มีปัญหาในการโหลด Foot:', error));
     </script>
 </body>
 </html>

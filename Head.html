@@ -20,22 +20,19 @@
 </nav>
 
 <script>
-(function() {
-    // ดึง URL ทั้งหมดมาแปลงเป็นตัวพิมพ์เล็ก เพื่อป้องกันปัญหา Case Sensitive
+// สั่งให้สคริปต์รอให้แท็ก HTML ถูกสร้างเสร็จใน DOM ก่อนทำงาน 0.05 วินาที เพื่อป้องกันการชนกันของฟังก์ชัน
+setTimeout(function() {
     const currentUrl = window.location.href.toLowerCase();
     const navLinks = document.querySelectorAll('#main-nav .nav-link');
 
-    // ตรวจสอบจากชื่อหน้าตรงๆ ใน URL
     const isAbout = currentUrl.includes('about.html');
     const isContact = currentUrl.includes('contact.html');
-    
-    // กฎเหล็ก: ถ้าไม่มีคำว่า about และ contact อยู่ใน URL เลย แปลว่าเป็นหน้าแรก (Home) แน่นอน
+    // ถ้าไม่มีคำว่า about และ contact เลย ให้เคลมว่าเป็นหน้าแรกทันที
     const isHome = !isAbout && !isContact;
 
     navLinks.forEach(link => {
         const href = link.getAttribute('href').toLowerCase();
         
-        // ล้างคลาสสีเก่าออกให้หมดก่อนทำงาน
         link.classList.remove('active', 'text-white', 'text-white-50');
 
         if (href.includes('index.html') && isHome) {
@@ -45,9 +42,8 @@
         } else if (href.includes('contact.html') && isContact) {
             link.classList.add('active', 'text-white');
         } else {
-            // หน้าอื่นที่ไม่ได้ถูกเปิดอยู่ ให้เป็นสีขาวจางลง 50%
             link.classList.add('text-white-50');
         }
     });
-})();
+}, 50);
 </script>

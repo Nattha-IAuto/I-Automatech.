@@ -78,7 +78,8 @@
     .logo-slider-track {
         display: flex;
         align-items: center;
-        width: calc(250px * 12); 
+        width: max-content;
+        min-width: max-content; 
         animation: logo-scroll 25s linear infinite;
     }
 
@@ -112,7 +113,7 @@
 
     @keyframes logo-scroll {
         0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-250px * 6)); }
+        100% { transform: translateX(calc(-250px * 12)); }
     }
 
     @media (max-width: 767.98px) {
@@ -136,11 +137,12 @@
             max-height: 100px;
         }
         .logo-slider-track {
-            width: calc(160px * 12);
+            width: max-content;
+            min-width: max-content;
         }
         @keyframes logo-scroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(calc(-160px * 6)); }
+            100% { transform: translateX(calc(-160px * 12)); }
         }
     }
 </style>
@@ -164,6 +166,20 @@
             <div class="logo-slide"><img src="Cus005.png" alt="Panasonic"></div>
             <div class="logo-slide"><img src="Cus006.png" alt="Suzuki"></div>
             
+            <div class="logo-slide"><img src="Cus001.png" alt="Daikin"></div>
+            <div class="logo-slide"><img src="Cus002.png" alt="Ford"></div>
+            <div class="logo-slide"><img src="Cus003.png" alt="Honda"></div>
+            <div class="logo-slide"><img src="Cus004.png" alt="Mitsubishi"></div>
+            <div class="logo-slide"><img src="Cus005.png" alt="Panasonic"></div>
+            <div class="logo-slide"><img src="Cus006.png" alt="Suzuki"></div>
+
+            <div class="logo-slide"><img src="Cus001.png" alt="Daikin"></div>
+            <div class="logo-slide"><img src="Cus002.png" alt="Ford"></div>
+            <div class="logo-slide"><img src="Cus003.png" alt="Honda"></div>
+            <div class="logo-slide"><img src="Cus004.png" alt="Mitsubishi"></div>
+            <div class="logo-slide"><img src="Cus005.png" alt="Panasonic"></div>
+            <div class="logo-slide"><img src="Cus006.png" alt="Suzuki"></div>
+
             <div class="logo-slide"><img src="Cus001.png" alt="Daikin"></div>
             <div class="logo-slide"><img src="Cus002.png" alt="Ford"></div>
             <div class="logo-slide"><img src="Cus003.png" alt="Honda"></div>

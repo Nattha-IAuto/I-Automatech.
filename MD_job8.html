@@ -38,10 +38,10 @@
             background: var(--accent-blue);
         }
 
-        /* การ์ดสินค้าแต่ละชิ้น (ขยายระยะด้านในให้โปร่งขึ้น) */
+        /* การ์ดสินค้าแต่ละชิ้น */
         .jig-card {
             background: #ffffff;
-            padding: 24px; /* เพิ่มพื้นที่รอบรูปภาพให้ดูพรีเมียม */
+            padding: 24px; 
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             border: 1px solid #eef2f6;
@@ -51,6 +51,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            overflow: hidden; /* ป้องกันเนื้อหาปลิ้นออกนอกการ์ด */
         }
         
         .jig-card:hover {
@@ -59,7 +60,7 @@
             border-color: rgba(0, 180, 216, 0.4);
         }
 
-        /* กรอบรูปภาพ (ขยายให้เต็มสัดส่วนของการ์ด) */
+        /* กรอบรูปภาพ */
         .jig-img-wrapper {
             position: relative;
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
@@ -68,9 +69,9 @@
             background: #ffffff;
             border: 1px solid #e2e8f0;
             width: 100%;
-            max-width: 100%; /* 🌟 ปรับให้ขยายเต็มความกว้างคอลัมน์ */
-            margin: 0 auto 20px auto;
-            cursor: pointer; /* 🌟 เพิ่มเมาส์รูปมือให้รู้ว่ากดดูรูปได้ */
+            max-width: 100%; 
+            margin: 0 auto;
+            cursor: pointer; 
         }
         
         /* บังคับสัดส่วนรูปภาพ */
@@ -79,120 +80,129 @@
             aspect-ratio: 1 / 1; 
             display: block;
             object-fit: cover;
+            transition: transform 0.3s ease;
         }
 
-        /* ป้ายชื่อสินค้า (ปรับขนาดตัวหนังสือและระยะกดให้พอดี) */
+        /* ซูมรูปภาพเล็กน้อยตอนเมาส์แตะ */
+        .jig-card:hover .jig-img {
+            transform: scale(1.05);
+        }
+
+        /* 🌟 ปรับปรุง: กล่องข้อความด้านนอกรูปภาพ (ซ่อนไว้และเลื่อนขึ้นมาเมื่อเมาส์แตะ) */
+        .jig-overlay-box {
+            width: 100%;
+            padding: 0 10px;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            text-align: center;
+        }
+
+        /* เมื่อเอาเมาส์มาแตะการ์ด ให้กล่องข้อความโผล่ออกมา */
+        .jig-card:hover .jig-overlay-box {
+            padding: 15px 10px 0 10px;
+            max-height: 100px;
+            opacity: 1;
+        }
+
+        /* สไตล์ข้อความตอนเมาส์แตะด้านนอกรูป */
+        .jig-overlay-text {
+            color: #333333;
+            font-size: 15px;
+            font-weight: 500;
+            background-color: #f8f9fa;
+            border: 1px dashed var(--accent-blue);
+            padding: 8px 12px;
+            border-radius: 8px;
+        }
+
+        /* ป้ายชื่อสินค้า */
         .jig-badge {
             background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
             color: white;
             font-weight: bold;
-            padding: 10px 24px; /* เพิ่มพื้นที่ป้ายให้กด/ดูง่ายขึ้น */
+            padding: 10px 24px; 
             border-radius: 6px;
             display: inline-block;
             letter-spacing: 0.5px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            font-size: 0.9rem; /* ปรับขนาดฟอนต์ให้ชัดเจนเต็มตา */
+            font-size: 0.9rem; 
             text-align: center;
             width: auto;
             min-width: 180px;
+            margin-top: 15px;
         }
-        .jig-badge.alt {
-            background: linear-gradient(90deg, #0d47a1, #1565c0);
+
+        /* 🌟 สไตล์ข้อความคำอธิบายใต้รูปในป๊อปอัป Modal */
+        .lightbox-caption-text {
+            color: #ffffff;
+            margin-top: 15px;
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
         }
 
         /* ==========================================
            📱 สไตล์เฉพาะสำหรับหน้าจอมือถือ (Mobile เท่านั้น)
-           จะไม่กระทบหรือเปลี่ยนแปลงการแสดงผลบนคอมพิวเตอร์เลย
            ========================================== */
         @media (max-width: 767.98px) {
             .about-header {
-                padding: 40px 15px !important;
+                padding: 40px 15px !important; 
                 margin-bottom: 25px !important;
             }
             .about-header h1 {
-                font-size: 2rem !important;
+                font-size: 2rem !important; 
             }
             .about-header p {
                 font-size: 0.95rem !important;
             }
             .jig-card {
-                padding: 16px !important;
+                padding: 16px !important; 
             }
             .jig-badge {
-                width: 100% !important;
+                width: 100% !important; 
                 font-size: 0.85rem !important;
                 padding: 10px 15px !important;
+            }
+            /* บนมือถือให้เปิดแสดงข้อความด้านนอกค้างไว้เลย */
+            .jig-overlay-box {
+                padding: 15px 10px 0 10px !important;
+                max-height: 100px !important;
+                opacity: 1 !important;
             }
         }
     </style>
 </head>
 <body>
-
+s
     <div id="Head-placeholder"></div>
 
     <div class="about-header text-center shadow-sm">
         <div class="container px-4">
-            <h1 class="display-5 fw-bold m-0"> Machine Order </h1>
-            <p class="fs-6 text-white-50 mt-2 mb-0"> เครื่องจักรและระบบอัตโนมัติ </p>
+            <h1 class="display-5 fw-bold m-0"> ............... </h1>
         </div>
     </div>
    
     <div class="container my-5 px-4" style="max-width: 1200px;"> 
         <div class="row g-4"> 
+        
+            <div class="col-12 col-sm-6 col-md-4 mx-auto">
+                <div class="jig-card">
+                    <div class="jig-img-wrapper">
+                        <img src="MD8/Logo2.jpg" class="jig-img" alt="Jig Fixture 2" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+2'">         
+                    </div>
+                    <div class="jig-overlay-box">
+                        <div class="jig-overlay-text"> Modify </div>
+                    </div>
+                    <div class="jig-caption-source" style="display:none;"> Modify </div>
+                </div>
+            </div>
+
             
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="M1/m1.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
-                    </div>
-                    <span class="jig-badge"><a href="M_job1.html" class="text-white text-primary text-decoration-none"> Auto Hot Revet </a></span>
-                </div>
-            </div>
 
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="M2/m2.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
-                    </div>
-                    <span class="jig-badge"><a href="M_job2.html" class="text-white text-primary text-decoration-none"> Auto Conveyor Lifter </a></span>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="M3/Logo2.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
-                    </div>
-                    <span class="jig-badge"><a href="M_job3.html" class="text-white text-primary text-decoration-none"> Auto Turn Table </a></span>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="M4/Logo2.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
-                    </div>
-                    <span class="jig-badge"><a href="M_job4.html" class="text-white text-primary text-decoration-none"> Machine </a></span>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="M5/Logo2.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
-                    </div>
-                    <span class="jig-badge"><a href="M_job5.html" class="text-white text-primary text-decoration-none"> Machine </a></span>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="M6/Logo2.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
-                    </div>
-                    <span class="jig-badge"><a href="M_job6.html" class="text-white text-primary text-decoration-none"> Machine </a></span>
-                </div>
-            </div>
 
         </div>
     </div>
@@ -204,18 +214,19 @@
                     <button type="button" class="btn-close btn-close-white fs-4 p-3" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0 text-center">
-                    <img id="lightboxImage" src="" class="img-fluid rounded shadow-lg" style="max-height: 85vh; object-fit: contain;">
+                    <img id="lightboxImage" src="" class="img-fluid rounded shadow-lg" style="max-height: 75vh; object-fit: contain;">
+                    <div id="lightboxCaption" class="lightbox-caption-text"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="Foot-placeholder"></div>
+    <div id="Foot1-placeholder"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    // 1. ดึงข้อมูลไฟล์ Head.html (ถอดสคริปต์สแกนตรวจสอบลิงก์รูปแบบเก่าออก เพื่อไม่ให้กระทบสีเมนู)
+    // 1. ดึงข้อมูลไฟล์ Head.html
     fetch('Head.html') 
         .then(response => {
             if (!response.ok) throw new Error("หาไฟล์ Head.html ไม่เจอจ้า");
@@ -226,29 +237,36 @@
         })
         .catch(error => console.error('มีปัญหาในการโหลด Head:', error));
 
-    // 2. ดึงข้อมูลไฟล์ Foot.html
-    fetch('Foot.html')
+    // 2. ดึงข้อมูลไฟล์ Foot1.html
+    fetch('Foot1.html')
         .then(response => {
-            if (!response.ok) throw new Error("หาไฟล์ Foot.html ไม่เจอจ้า");
+            if (!response.ok) throw new Error("หาไฟล์ Foot1.html ไม่เจอจ้า");
             return response.text();
         })
         .then(data => {
-            document.getElementById('Foot-placeholder').innerHTML = data;
+            document.getElementById('Foot1-placeholder').innerHTML = data;
         })
-        .catch(error => console.error('มีปัญหาในการโหลด Foot:', error));
+        .catch(error => console.error('มีปัญหาในการโหลด Foot1:', error));
 
-    // 🌟 3. สคริปต์เปิดดูรูปภาพขนาดเต็ม
+    // 🌟 3. สคริปต์เปิดดูรูปภาพขนาดเต็ม พร้อมดึงคำอธิบายไปไว้ใต้รูปใน Modal
     document.addEventListener("DOMContentLoaded", function () {
         const lightboxModalEl = document.getElementById('imageLightboxModal');
         const lightboxModal = new bootstrap.Modal(lightboxModalEl);
         const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
         const imgWrappers = document.querySelectorAll('.jig-img-wrapper');
 
         imgWrappers.forEach(wrapper => {
             wrapper.addEventListener('click', function () {
                 const targetImg = this.querySelector('.jig-img');
+                // ค้นหาข้อความบรรยายที่อยู่ภายในการ์ดเดียวกัน
+                const card = this.closest('.jig-card');
+                const captionSource = card.querySelector('.jig-caption-source');
+
                 if (targetImg) {
                     lightboxImage.src = targetImg.src;
+                    // ดึงข้อความจากซอร์สมาใส่ใต้รูปใน Modal
+                    lightboxCaption.innerHTML = captionSource ? captionSource.innerHTML : '';
                     lightboxModal.show();
                 }
             });

@@ -38,10 +38,10 @@
             background: var(--accent-blue);
         }
 
-        /* การ์ดสินค้าแต่ละชิ้น */
+        /* การ์ดสินค้าแต่ละชิ้น (ขยายระยะด้านในให้โปร่งขึ้น) */
         .jig-card {
             background: #ffffff;
-            padding: 24px; 
+            padding: 24px; /* เพิ่มพื้นที่รอบรูปภาพให้ดูพรีเมียม */
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             border: 1px solid #eef2f6;
@@ -59,7 +59,7 @@
             border-color: rgba(0, 180, 216, 0.4);
         }
 
-        /* กรอบรูปภาพ */
+        /* กรอบรูปภาพ (ขยายให้เต็มสัดส่วนของการ์ด) */
         .jig-img-wrapper {
             position: relative;
             box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
@@ -68,9 +68,9 @@
             background: #ffffff;
             border: 1px solid #e2e8f0;
             width: 100%;
-            max-width: 100%; 
+            max-width: 100%; /* 🌟 ปรับให้ขยายเต็มความกว้างคอลัมน์ */
             margin: 0 auto 20px auto;
-            cursor: pointer; /* 🌟 เพิ่มเมาส์รูปมือให้รู้ว่ากดดูรูปได้ */
+            cursor: pointer; /* 🌟 เพิ่มเมาส์รูปมือเพื่อให้รู้ว่ากดดูรูปได้ */
         }
         
         /* บังคับสัดส่วนรูปภาพ */
@@ -81,17 +81,17 @@
             object-fit: cover;
         }
 
-        /* ป้ายชื่อสินค้า */
+        /* ป้ายชื่อสินค้า (ปรับขนาดตัวหนังสือและระยะกดให้พอดี) */
         .jig-badge {
             background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
             color: white;
             font-weight: bold;
-            padding: 10px 24px; 
+            padding: 10px 24px; /* เพิ่มพื้นที่ป้ายให้กด/ดูง่ายขึ้น */
             border-radius: 6px;
             display: inline-block;
             letter-spacing: 0.5px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            font-size: 0.9rem; 
+            font-size: 0.9rem; /* ปรับขนาดฟอนต์ให้ชัดเจนเต็มตา */
             text-align: center;
             width: auto;
             min-width: 180px;
@@ -106,20 +106,20 @@
            ========================================== */
         @media (max-width: 767.98px) {
             .about-header {
-                padding: 40px 15px !important; /* กระชับแถบหัวข้อด้านบน */
+                padding: 40px 15px !important;
                 margin-bottom: 25px !important;
             }
             .about-header h1 {
-                font-size: 2rem !important; /* ปรับขนาดหัวข้อให้อ่านง่ายบนมือถือ */
+                font-size: 2rem !important;
             }
             .about-header p {
                 font-size: 0.95rem !important;
             }
             .jig-card {
-                padding: 16px !important; /* ปรับลด Padding ด้านในการ์ดให้รูปภาพแสดงได้ใหญ่ขึ้น */
+                padding: 16px !important;
             }
             .jig-badge {
-                width: 100% !important; /* บังคับให้ป้ายขยายกว้างพอดีกับการ์ดบนจอมือถือ */
+                width: 100% !important;
                 font-size: 0.85rem !important;
                 padding: 10px 15px !important;
             }
@@ -132,94 +132,68 @@
 
     <div class="about-header text-center shadow-sm">
         <div class="container px-4">
-            <h1 class="display-5 fw-bold m-0"> Jig & Fixture </h1>
-            <p class="fs-6 text-white-50 mt-2 mb-0"> อุปกรณ์จับยึดและเครื่องมือช่วยประกอบที่ได้มาตรฐานความแม่นยำสูง </p>
+            <h1 class="display-5 fw-bold m-0"> Machining and Spear Parts </h1>
+            <p class="fs-6 text-white-50 mt-2 mb-0"> ชิ้นส่วนในงานอุตสาหกรรมและเครื่องจักร  </p>
         </div>
     </div>
    
     <div class="container my-5 px-4" style="max-width: 1200px;"> 
         <div class="row g-4"> 
             
-            <div class="col-12 col-sm-6 col-md-4">
+             <div class="col-12 col-sm-6 col-md-4">
                 <div class="jig-card">
                     <div class="jig-img-wrapper">
-                        <img src="J1/j1.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
+                        <img src="SP1/sp1.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
                     </div>
-                    <span class="jig-badge"><a href="J_job1.html" class="text-white text-primary text-decoration-none"> Jig For Light Testing </a></span>
+                    <span class="jig-badge"><a href="SP_job1.html" class="text-white text-primary text-decoration-none"> .......... </a></span>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="jig-card">
                     <div class="jig-img-wrapper">
-                        <img src="J2/j2.1.jpg" class="jig-img" alt="Jig Fixture 2" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+2'">
+                        <img src="SP2/sp2.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
                     </div>
-                    <span class="jig-badge"><a href="J_job2.html" class="text-white text-primary text-decoration-none"> ............ </a></span>
+                    <span class="jig-badge"><a href="SP_job2.html" class="text-white text-primary text-decoration-none"> .......... </a></span>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="jig-card">
                     <div class="jig-img-wrapper">
-                        <img src="J3/j3.1.jpg" class="jig-img" alt="Jig Fixture 3" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+3'">
+                        <img src="SP3/sp3.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
                     </div>
-                    <span class="jig-badge"><a href="J_job3.html" class="text-white text-primary text-decoration-none"> ............ </a></span>
+                    <span class="jig-badge"><a href="SP_job3.html" class="text-white text-primary text-decoration-none"> .......... </a></span>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="jig-card">
                     <div class="jig-img-wrapper">
-                        <img src="J4/j4.1.jpg" class="jig-img" alt="Jig Fixture 4" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+4'">
+                        <img src="SP4/sp4.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
                     </div>
-                    <span class="jig-badge"><a href="J_job4.html" class="text-white text-primary text-decoration-none"> ............ </a></span>
+                    <span class="jig-badge"><a href="SP_job4.html" class="text-white text-primary text-decoration-none"> Pin Gate </a></span>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="jig-card">
                     <div class="jig-img-wrapper">
-                        <img src="J5/j5.1.jpg" class="jig-img" alt="Jig Fixture 5" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+5'">
+                        <img src="SP5/sp5.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
                     </div>
-                    <span class="jig-badge"><a href="J_job5.html" class="text-white text-primary text-decoration-none"> ............ </a></span>
+                    <span class="jig-badge"><a href="SP_job5.html" class="text-white text-primary text-decoration-none"> .......... </a></span>
                 </div>
             </div>
 
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="jig-card">
                     <div class="jig-img-wrapper">
-                        <img src="J6/j6.1.jpg" class="jig-img" alt="Jig Fixture 6" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+6'">
+                        <img src="SP6/sp6.1.jpg" class="jig-img" alt="Jig Fixture 1" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+1'">
                     </div>
-                    <span class="jig-badge"><a href="J_job6.html" class="text-white text-primary text-decoration-none"> ............ </a></span>
+                    <span class="jig-badge"><a href="SP_job6.html" class="text-white text-primary text-decoration-none"> Mold </a></span>
                 </div>
             </div>
 
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="J7/j7.1.jpg" class="jig-img" alt="Jig Fixture 7" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+7'">
-                    </div>
-                    <span class="jig-badge"><a href="J_job7.html" class="text-white text-primary text-decoration-none"> ............ </a></span>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="J8/j8.1.jpg" class="jig-img" alt="Jig Fixture 8" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+8'">
-                    </div>
-                    <span class="jig-badge"><a href="J_job8.html" class="text-white text-primary text-decoration-none"> ............ </a></span>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4">
-                <div class="jig-card">
-                    <div class="jig-img-wrapper">
-                        <img src="J9/Logo2.jpg" class="jig-img" alt="Jig Fixture 9" onerror="this.src='https://placehold.co/400x400?text=Jig+Fixture+9'">
-                    </div>
-                    <span class="jig-badge"><a href="J_job9.html" class="text-white text-primary text-decoration-none"> ............ </a></span>
-                </div>
-            </div>
         </div>
     </div>
     
@@ -241,7 +215,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    // 1. ดึงข้อมูลไฟล์ Head.html (เคลียร์คำสั่งตรวจสอบ Active เก่าออกเพื่อไม่ให้สีกวนกัน)
+    // 1. ดึงข้อมูลไฟล์ Head.html (ถอดสคริปต์สแกนตรวจสอบลิงก์รูปแบบเก่าออก เพื่อควบคุมสีเมนูให้ไม่เพี้ยน)
     fetch('Head.html') 
         .then(response => {
             if (!response.ok) throw new Error("หาไฟล์ Head.html ไม่เจอจ้า");
@@ -263,7 +237,7 @@
         })
         .catch(error => console.error('มีปัญหาในการโหลด Foot:', error));
 
-    // 🌟 3. สคริปต์เปิดดูรูปภาพขนาดเต็ม
+    // 🌟 3. สคริปต์เปิดดูรูปภาพขนาดเต็ม (เพิ่มเข้ามาใหม่)
     document.addEventListener("DOMContentLoaded", function () {
         const lightboxModalEl = document.getElementById('imageLightboxModal');
         const lightboxModal = new bootstrap.Modal(lightboxModalEl);
